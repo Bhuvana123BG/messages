@@ -68,11 +68,11 @@ let messages = [
     "ethukoni sankalo kurchopettukoni mudduu petti pilchukoni povala"
   ];
   
-
   const randomMessageEl = document.getElementById("randomMessage");
   const messageListEl = document.getElementById("messageList");
   const msgIconEl = document.getElementById("msgIcon");
   const msgPanelEl = document.getElementById("msgPanel");
+  const closeBtn = document.getElementById("closeMsg");
   const emojiContainer = document.getElementById("emojiContainer");
   
   // Render message list
@@ -87,7 +87,16 @@ let messages = [
   
   // Toggle messages panel
   msgIconEl.addEventListener("click", ()=>{
-    msgPanelEl.style.display = (msgPanelEl.style.display==="flex")?"none":"flex";
+    if(window.innerWidth <= 600){ // mobile fullscreen
+      msgPanelEl.classList.toggle("fullscreen");
+    } else {
+      msgPanelEl.style.display = (msgPanelEl.style.display==="flex")?"none":"flex";
+    }
+  });
+  
+  // Close button
+  closeBtn.addEventListener("click", ()=>{
+    msgPanelEl.classList.remove("fullscreen");
   });
   
   // Show random message
@@ -105,7 +114,7 @@ let messages = [
     input.value="";
     renderMessageList();
     showRandom();
-    launchEmojis(10); // more emojis for fun
+    launchEmojis(10); // more emojis
   }
   
   // Launch emojis when adding message
@@ -116,7 +125,7 @@ let messages = [
       emoji.classList.add("emoji");
       emoji.style.left = `${Math.random()*window.innerWidth}px`;
       emoji.style.fontSize = `${16+Math.random()*24}px`;
-      emoji.style.animationDuration = `${3 + Math.random()*4}s`; // random speed
+      emoji.style.animationDuration = `${3 + Math.random()*4}s`;
       emoji.textContent = emojiChars[Math.floor(Math.random()*emojiChars.length)];
       emojiContainer.appendChild(emoji);
       setTimeout(()=>emoji.remove(),7000);
@@ -130,12 +139,12 @@ let messages = [
     emoji.classList.add("emoji");
     emoji.style.left = `${Math.random()*window.innerWidth}px`;
     emoji.style.fontSize = `${12+Math.random()*28}px`;
-    emoji.style.animationDuration = `${4 + Math.random()*6}s`; // random speed
+    emoji.style.animationDuration = `${4 + Math.random()*6}s`;
     emoji.textContent = emojiChars[Math.floor(Math.random()*emojiChars.length)];
     emojiContainer.appendChild(emoji);
     setTimeout(()=>emoji.remove(),10000);
   }
-  setInterval(generateFallingEmojis, 300); // every 0.3s
+  setInterval(generateFallingEmojis, 300);
   
   // Init
   renderMessageList();

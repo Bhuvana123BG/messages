@@ -39,6 +39,10 @@ body {min-height:100vh; overflow-x:hidden; background: linear-gradient(135deg, #
   padding:5px;
   border-bottom:1px solid rgba(255,255,255,0.2);
 }
+.msg-panel button#closeMsg {
+  display:none;
+}
+
 @keyframes fadeIn {from{opacity:0; transform: translateY(-10px);}to{opacity:1; transform: translateY(0);}}
 
 /* MAIN APP */
@@ -105,18 +109,53 @@ body {min-height:100vh; overflow-x:hidden; background: linear-gradient(135deg, #
   animation: fall linear forwards;
   opacity: 0.8;
 }
-
 @keyframes fall {
   0% {transform: translateY(-50px) rotate(0deg);}
   100% {transform: translateY(110vh) rotate(360deg);}
 }
+
 /* Mobile responsiveness */
 @media (max-width: 600px) {
-    .header h1 {font-size:24px;}
-    .msg-icon {font-size:24px;}
-    .card {font-size:18px; padding:20px; max-width:90%;}
-    .input-box input {width:150px; font-size:14px;}
-    .input-box button {padding:8px 12px; font-size:14px;}
-    .msg-panel {width:180px; top:45px; right:15px;}
+  .header h1 {font-size:24px;}
+  .msg-icon {font-size:24px;}
+  .card {font-size:18px; padding:20px; max-width:90%;}
+  .input-box input {width:150px; font-size:14px;}
+  .input-box button {padding:8px 12px; font-size:14px;}
+  .msg-panel {width:180px; top:45px; right:15px;}
+
+  /* Fullscreen mobile messages */
+  .msg-panel.fullscreen {
+    top: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+    padding: 20px;
+    display: flex !important;
+    flex-direction: column;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999;
+    overflow-y: auto;
+    animation: slideDown 0.3s ease forwards;
   }
-  
+  .msg-panel.fullscreen li {
+    font-size: 18px;
+    padding: 12px 0;
+  }
+  .msg-panel.fullscreen button#closeMsg {
+    display: block;
+    align-self: flex-end;
+    margin-bottom: 10px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    background: #ff6f61;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0;}
+  to { transform: translateY(0); opacity: 1;}
+}
