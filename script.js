@@ -150,5 +150,5 @@ let messages = [
   // Init
   renderMessageList();
   showRandom();
-  setInterval(showRandom,1000);
+  setInterval(showRandom,3000);
   document.getElementById("addBtn").addEventListener("click", addMessage);
