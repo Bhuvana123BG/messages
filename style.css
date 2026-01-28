@@ -1,6 +1,21 @@
 * {margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif;}
-body {min-height:100vh; overflow-x:hidden; background: linear-gradient(135deg, #a1c4fd, #c2e9fb);}
-
+body {
+    min-height:100vh;
+    overflow-x:hidden;
+  
+    background:
+      linear-gradient(
+        rgba(0,0,0,0.35),
+        rgba(0,0,0,0.35)
+      ),
+      url("bg.jpeg");
+  
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  
 /* HEADER */
 .header {
   display:flex;
@@ -17,31 +32,37 @@ body {min-height:100vh; overflow-x:hidden; background: linear-gradient(135deg, #
 }
 .header h1 {font-size:32px;}
 .msg-icon {cursor:pointer;font-size:28px;position: relative;}
-.msg-panel {
-  position:absolute;
-  top:50px;
-  right:30px;
-  background: rgba(0,0,0,0.85);
-  border-radius:10px;
-  padding:10px;
-  width:250px;
-  max-height:300px;
-  overflow-y:auto;
-  display:none;
-  flex-direction:column;
-  gap:6px;
-  animation: fadeIn 0.3s ease forwards;
-}
-.msg-panel ul {list-style:none;}
-.msg-panel li {
-  font-size:14px;
-  color:white;
-  padding:5px;
-  border-bottom:1px solid rgba(255,255,255,0.2);
-}
-.msg-panel button#closeMsg {
-  display:none;
-}
+
+/* MESSAGES PAGE (below header) */
+.messages-page {
+    width: 100%;
+    background: rgba(0,0,0,0.9);
+    color: white;
+    display: none; /* hidden by default */
+    padding: 20px 30px;
+    animation: slideDown 0.3s ease;
+  }
+  
+  .messages-page ul {
+    list-style: none;
+    max-width: 600px;      /* control width */
+    margin: 0 auto;        /* center horizontally */
+    text-align: center;    /* center text */
+  }
+  
+  .messages-page li {
+    padding: 14px;
+  margin: 10px 0;
+  font-size: 18px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  }
+  
+  /* Push app down when messages open */
+  .messages-page.show {
+    display: block;
+  }
 
 @keyframes fadeIn {from{opacity:0; transform: translateY(-10px);}to{opacity:1; transform: translateY(0);}}
 
@@ -121,37 +142,13 @@ body {min-height:100vh; overflow-x:hidden; background: linear-gradient(135deg, #
   .card {font-size:18px; padding:20px; max-width:90%;}
   .input-box input {width:150px; font-size:14px;}
   .input-box button {padding:8px 12px; font-size:14px;}
-  .msg-panel {width:180px; top:45px; right:15px;}
 
-  /* Fullscreen mobile messages */
-  .msg-panel.fullscreen {
-    top: 0 !important;
-    right: 0 !important;
-    width: 100% !important;
-    height: 100vh !important;
-    border-radius: 0 !important;
-    padding: 20px;
-    display: flex !important;
-    flex-direction: column;
-    background: rgba(0,0,0,0.95);
-    z-index: 9999;
-    overflow-y: auto;
-    animation: slideDown 0.3s ease forwards;
+  
+  .messages-page {
+    padding: 15px;
   }
-  .msg-panel.fullscreen li {
-    font-size: 18px;
-    padding: 12px 0;
-  }
-  .msg-panel.fullscreen button#closeMsg {
-    display: block;
-    align-self: flex-end;
-    margin-bottom: 10px;
-    padding: 6px 12px;
-    border: none;
-    border-radius: 8px;
-    background: #ff6f61;
-    color: white;
-    cursor: pointer;
+  .messages-page li {
+    font-size: 16px;
   }
 }
 

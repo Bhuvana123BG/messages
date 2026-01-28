@@ -42,6 +42,11 @@ let messages = [
     "Gudduthe sathav",
     "Thuuuuuuuuuu",
     "Chiiiiiiiiii",
+    "kopadaku",
+    "kopadu kaani chiraku padaku",
+    "padthayee",
+    "okasari padthayee",
+    "jaali kaadhu prema",
     "Maaa betaaaa kada",
     "Ni mida kakkutha",
     "Korukutha",
@@ -72,7 +77,7 @@ let messages = [
   const messageListEl = document.getElementById("messageList");
   const msgIconEl = document.getElementById("msgIcon");
   const msgPanelEl = document.getElementById("msgPanel");
-  const closeBtn = document.getElementById("closeMsg");
+//   const closeBtn = document.getElementById("closeMsg");
   const emojiContainer = document.getElementById("emojiContainer");
   
   // Render message list
@@ -86,18 +91,14 @@ let messages = [
   }
   
   // Toggle messages panel
-  msgIconEl.addEventListener("click", ()=>{
-    if(window.innerWidth <= 600){ // mobile fullscreen
-      msgPanelEl.classList.toggle("fullscreen");
-    } else {
-      msgPanelEl.style.display = (msgPanelEl.style.display==="flex")?"none":"flex";
-    }
+  let isOpen = false;
+  msgIconEl.addEventListener("click", () => {
+    isOpen = !isOpen;
+    msgPanelEl.classList.toggle("show", isOpen);
   });
   
-  // Close button
-  closeBtn.addEventListener("click", ()=>{
-    msgPanelEl.classList.remove("fullscreen");
-  });
+
+  
   
   // Show random message
   function showRandom(){
